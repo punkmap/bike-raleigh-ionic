@@ -77,7 +77,7 @@ export class MyApp implements OnInit {
   sendConnectionAlert() {
     const alert = this.alertCtrl.create({
       title: 'No Internet Connection',
-      subTitle: 'BikeRaleigh requires and internet connection',
+      subTitle: 'BikeRaleigh requires an internet connection',
       buttons: ['OK']
     });
     alert.present();
