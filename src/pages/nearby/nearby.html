@@ -1,0 +1,62 @@
+<!--
+  Generated template for the NearbyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header ion-fixed>
+    <ion-toolbar>    
+      <ion-segment [(ngModel)]="list">
+        <ion-segment-button value="shops">
+          Shops
+        </ion-segment-button>
+        <ion-segment-button value="parking">
+          Parking
+        </ion-segment-button>
+        <ion-segment-button value="greenways">
+            Greenways
+          </ion-segment-button>            
+      </ion-segment>
+    </ion-toolbar> 
+  </ion-header>
+<ion-content >
+
+    <div [ngSwitch]="list">
+        <ion-list *ngSwitchCase="'shops'">
+            <button ion-item *ngFor="let item of shops" (click)="itemTapped($event, item)">
+              
+              <div>
+                {{item.attributes.LABEL}}
+              </div>
+              <div class="distance">
+                  {{item.attributes.distance}} miles
+                </div>
+            </button>
+          </ion-list>
+          <ion-list *ngSwitchCase="'parking'">
+              <button ion-item *ngFor="let item of parking" (click)="itemTapped($event, item)">
+                
+                <div>
+                  {{item.attributes.ADDRESS}}
+                </div>
+                <div class="distance">
+                  {{item.attributes.distance}} miles
+                </div>
+              </button>
+            </ion-list>
+            <ion-list *ngSwitchCase="'greenways'">
+                <button ion-item *ngFor="let item of greenways" (click)="itemTapped($event, item)">
+                  
+                  <div>
+                    {{item.attributes.TRAILNAME}}
+                  </div>
+                  <div>
+                    {{item.attributes.ACCESS_}}
+                  </div>                      
+                  <div class="distance">
+                    {{item.attributes.distance}} miles
+                  </div>                  
+                </button>
+              </ion-list>  
+            </div>
+</ion-content>

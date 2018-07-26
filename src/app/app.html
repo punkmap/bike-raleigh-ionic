@@ -1,18 +1,70 @@
 <ion-menu [content]="content">
   <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu</ion-title>
+    <ion-toolbar color="dark">
+      <ion-title>{{title}}</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-    </ion-list>
-  </ion-content>
+      <ion-tabs #tabs (ionChange)="tabChanged($event)">
+          <ion-tab [root]="layersRoot" tabTitle="Layers" tabIcon="md-esri-icon-layers"></ion-tab>
+          <ion-tab [root]="nearbyRoot" tabTitle="Nearby" tabIcon="md-esri-icon-blank-map-pin"></ion-tab>
+      </ion-tabs>
+      
+    <!-- <div #layers></div> -->
+      <!-- <div padding>
+          <ion-segment [(ngModel)]="list">
+            <ion-segment-button value="shops">
+              Shops
+            </ion-segment-button>
+            <ion-segment-button value="parking">
+              Parking
+            </ion-segment-button>
+            <ion-segment-button value="greenways">
+                Greenways
+              </ion-segment-button>            
+          </ion-segment>
+        </div>   
+        <div [ngSwitch]="list">
+            <ion-list *ngSwitchCase="'shops'">
+                <button ion-item *ngFor="let item of shops" (click)="itemTapped($event, item)">
+                  
+                  <div>
+                    {{item.attributes.LABEL}}
+                  </div>
+                  <div class="distance">
+                      {{item.attributes.distance}} miles
+                    </div>
+                </button>
+              </ion-list>
+              <ion-list *ngSwitchCase="'parking'">
+                  <button ion-item *ngFor="let item of parking" (click)="itemTapped($event, item)">
+                    
+                    <div>
+                      {{item.attributes.ADDRESS}}
+                    </div>
+                    <div class="distance">
+                      {{item.attributes.distance}} miles
+                    </div>
+                  </button>
+                </ion-list>
+                <ion-list *ngSwitchCase="'greenways'">
+                    <button ion-item *ngFor="let item of greenways" (click)="itemTapped($event, item)">
+                      
+                      <div>
+                        {{item.attributes.TRAILNAME}}
+                      </div>
+                      <div>
+                        {{item.attributes.ACCESS_}}
+                      </div>                      
+                      <div class="distance">
+                        {{item.attributes.distance}} miles
+                      </div>                  
+                    </button>
+                  </ion-list>                              
+        </div>  -->
 
+    </ion-content>
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->

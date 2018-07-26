@@ -14,3 +14,56 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.scroll-content {
+    padding: 0 !important;
+    background: color($colors, dark);
+}
+
+.item {
+    background: color($colors, dark);
+    color: color($colors, light);
+
+}
+
+.distance {
+    font-size: 1.4rem;
+}
+
+.ion-md-esri-icon-layers:before {
+    content: "\e659" !important;
+    font-family: 'CalciteWebCoreIcons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    color: inherit;
+}
+
+.ion-md-esri-icon-blank-map-pin:before {
+
+    content: "\e61e" !important;
+    font-family: 'CalciteWebCoreIcons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+
+.tab-button {
+    background: color($colors, dark);
+
+}
+
+.tabbar {
+    border-top: 0.55px solid color($colors, primary) !important;
+}
+
+.content {
+    overflow: hidden;
+}
