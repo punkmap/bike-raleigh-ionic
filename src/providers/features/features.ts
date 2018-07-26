@@ -1,5 +1,5 @@
 import { Injectable, ElementRef } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 /*
   Generated class for the FeaturesProvider provider.
 

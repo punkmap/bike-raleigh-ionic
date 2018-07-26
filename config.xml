@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.raleigh.bikeraleigh588064" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.raleigh.bikeraleigh588064" version="2.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>BikeRaleigh</name>
     <description>The BikeRaleigh Program encourages biking in Raleigh through on-road facility design, cycling safety and education promotion, and encouragement events. Our primary goal is to promote bicycle use as a viable, attractive, non-polluting form of transportation and assure safe and convenient access to all areas of the City.
 </description>
@@ -92,6 +92,7 @@
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
+    <plugin name="cordova-sqlite-storage" spec="^2.3.3" />
     <engine name="android" spec="7.0.0" />
     <engine name="ios" spec="4.5.4" />
 </widget>

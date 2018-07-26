@@ -25,7 +25,7 @@ export class HomePage implements OnInit {
 
   async getGeo() {
     await this.platform.ready();
-    loadCss('https://js.arcgis.com/4.8/esri/themes/dark/main.css');
+    loadCss('https://js.arcgis.com/4.8/esri/themes/dark/main.css');   
     const [WebMap, MapView]:any = await loadModules(['esri/WebMap', 'esri/views/MapView'])
     .catch(err => { console.error("ArcGIS: ", err)});
         let map: esri.WebMap = new WebMap({portalItem: {
