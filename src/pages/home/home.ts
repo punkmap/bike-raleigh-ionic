@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import esri = __esri;
 import { loadModules } from 'esri-loader';
+import { loadCss } from 'esri-loader';
 import { FeaturesProvider } from '../../providers/features/features';
 import { Platform } from 'ionic-angular';
 
@@ -24,7 +25,7 @@ export class HomePage implements OnInit {
 
   async getGeo() {
     await this.platform.ready();
-
+    loadCss('https://js.arcgis.com/4.8/esri/themes/dark/main.css');
     const [WebMap, MapView]:any = await loadModules(['esri/WebMap', 'esri/views/MapView'])
     .catch(err => { console.error("ArcGIS: ", err)});
         let map: esri.WebMap = new WebMap({portalItem: {

@@ -69,17 +69,25 @@ export class MyApp implements OnInit {
 
   checkConnectionType () {
     this.features.connected.next(this.network.type != 'none' && this.network.type != 'unknown' && this.network.type != '2g');
+    if (this.network.type === 'none' || this.network.type === 'unknown' || this.network.type === '2g') {
+      this.sendConnectionAlert();
+    }
+  }
+
+  sendConnectionAlert() {
+    const alert = this.alertCtrl.create({
+      title: 'No Internet Connection',
+      subTitle: 'BikeRaleigh requires and internet connection',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   checkConnection () {
     this.checkConnectionType();
 
     this.disconnectSubscription = this.network.onDisconnect().subscribe(() => {
-      const alert = this.alertCtrl.create({
-        title: 'No Internet Connection',
-        subTitle: 'BikeRaleigh requires and internet connection',
-        buttons: ['OK']
-      })
+      this.sendConnectionAlert();
     });
     this.connectSubscription = this.network.onConnect().subscribe(() => {
       console.log('network connected!');
