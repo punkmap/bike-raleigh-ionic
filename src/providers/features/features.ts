@@ -20,8 +20,10 @@ export class FeaturesProvider {
   shops:BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   zoomto:BehaviorSubject<any> = new BehaviorSubject<any>(null);
   layerEl:BehaviorSubject<ElementRef> = new BehaviorSubject<ElementRef>(null);
+  basemapsEl:BehaviorSubject<ElementRef> = new BehaviorSubject<ElementRef>(null);
+  arcgisLoaded:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   connected:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
-
+  nearbySelected:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
   public setConnection(connected:boolean) {
     this.connected.next(connected);
   }
@@ -51,5 +53,14 @@ export class FeaturesProvider {
   }      
   public setLayerEl(el:ElementRef) {
     this.layerEl.next(el);
+  }
+  public setBasemapsEl(el:ElementRef) {
+    this.basemapsEl.next(el);
+  }  
+  public setArcGisLoaded(loaded:boolean) {
+    this.arcgisLoaded.next(loaded);
+  }
+  public setNearbySelected(selected:boolean) {
+    this.nearbySelected.next(selected);
   }
 }

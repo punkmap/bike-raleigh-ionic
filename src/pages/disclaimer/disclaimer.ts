@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-
-/**
- * Generated class for the DisclaimerPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Storage } from '../../../node_modules/@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -14,16 +8,13 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
   templateUrl: 'disclaimer.html',
 })
 export class DisclaimerPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public storage:Storage) {
   }
-  
   dismiss() {
+    this.storage.set('disclaimer', {hide: true});
     this.viewCtrl.dismiss();
   }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad DisclaimerPage');
   }
-
 }

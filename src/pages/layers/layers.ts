@@ -21,9 +21,11 @@ export class LayersPage implements OnInit{
   }
 
   ionViewDidLoad () {
-    this.features.setLayerEl(this.layersEl);
-    
-
+    this.features.arcgisLoaded.subscribe(loaded => {
+      if (loaded) {
+        this.features.setLayerEl(this.layersEl);
+      }
+    })
   }
 
   

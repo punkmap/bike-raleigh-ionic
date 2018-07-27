@@ -1,18 +1,18 @@
 <ion-menu [content]="content">
   <ion-header>
-    <ion-toolbar color="dark">
+    <ion-navbar color="primary">
       <ion-title>{{title}}</ion-title>
-    </ion-toolbar>
+    </ion-navbar>
   </ion-header>
 
-  <ion-content>
-      <ion-tabs #tabs (ionChange)="tabChanged($event)">
+  <ion-content ion-fixed>
+      <ion-tabs #tabs (ionChange)="tabChanged($event)" ion-fixed>
           <ion-tab [root]="layersRoot" tabTitle="Layers" tabIcon="md-esri-icon-layers"></ion-tab>
-          <ion-tab [root]="nearbyRoot" tabTitle="Nearby" tabIcon="md-esri-icon-blank-map-pin"></ion-tab>
+          <ion-tab [root]="basemapsRoot" tabTitle="Basemaps" tabIcon="md-esri-icon-basemap"></ion-tab>          
+          <ion-tab [root]="nearbyRoot" tabTitle="Nearby" tabIcon="md-esri-icon-blank-map-pin"></ion-tab>          
       </ion-tabs>
-
     </ion-content>
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false" ></ion-nav>
+<ion-nav [root]="rootPage" #content swipeEnabled="false"></ion-nav>

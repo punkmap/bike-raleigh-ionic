@@ -32,7 +32,6 @@
 .ion-md-esri-icon-layers:before {
     content: "\e659" !important;
     font-family: 'CalciteWebCoreIcons' !important;
-    speak: none;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -46,7 +45,17 @@
 
     content: "\e61e" !important;
     font-family: 'CalciteWebCoreIcons' !important;
-    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}
+.ion-md-esri-icon-basemap:before {
+
+    content: "\e634" !important;
+    font-family: 'CalciteWebCoreIcons' !important;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -66,4 +75,16 @@
 
 .content {
     overflow: hidden;
+}
+
+.tab-button-icon,.tab-button-text {
+    color: #adadad !important;
+}
+
+.tab-button[aria-selected=true] .tab-button-icon, .tab-button[aria-selected=true] .tab-button-text { 
+    color: color($colors, primary) !important;
+}
+
+ion-header {
+    z-index: 1000;
 }

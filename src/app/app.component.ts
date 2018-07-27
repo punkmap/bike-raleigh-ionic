@@ -1,11 +1,10 @@
-import { Component, ViewChild, OnInit, ElementRef } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { Nav, Platform, Tabs } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { FeaturesProvider } from '../providers/features/features';
-import { MenuPage } from '../pages/menu/menu';
 import { Network } from '../../node_modules/@ionic-native/network';
 import { Subscription } from '../../node_modules/rxjs';
 import { AlertController } from 'ionic-angular';
@@ -20,16 +19,17 @@ import { Storage } from '../../node_modules/@ionic/storage';
 })
 export class MyApp implements OnInit {
   @ViewChild(Nav) nav: Nav;
-  @ViewChild('layers') layersEl: ElementRef;
   @ViewChild('tabs') tabRef: Tabs;
   title:string = '';
   layersRoot = 'LayersPage'
   nearbyRoot = 'NearbyPage'
+  basemapsRoot = 'BasemapsPage'
   shops:any[] = [];
   parking:any[] = [];
   greenways:any[] = [];
   rootPage: any = HomePage;
-
+  arcgisLoaded:boolean = false;
+  layersQueried:boolean = false;
   pages: Array<{title: string, component: any}>;
 
   disconnectSubscription:Subscription;
@@ -37,21 +37,10 @@ export class MyApp implements OnInit {
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public features:FeaturesProvider, private network:Network, public alertCtrl: AlertController, public modalCtrl: ModalController, private storage: Storage) {
     this.initializeApp();
-    
-    this.statusBar.overlaysWebView(true);
-    this.statusBar.backgroundColorByHexString("#ffffff");
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: MenuPage }
-    ];
-
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.storage.get('disclaimer').then(disclaimer => {
         if (!disclaimer) {
           this.presentModal();
@@ -59,9 +48,6 @@ export class MyApp implements OnInit {
           this.presentModal();
         }
       });
-
-
-
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.checkConnection();
@@ -70,19 +56,15 @@ export class MyApp implements OnInit {
   presentModal() {
       const modal = this.modalCtrl.create(DisclaimerPage);
       modal.present();
-      modal.onDidDismiss(() => {
-        this.storage.set('disclaimer', {hide: true});
-      });     
-  }
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
-  }
 
+  }
 
   tabChanged(event) {
     this.title = event.tabTitle;
+    if (this.title === 'Nearby' && !this.layersQueried) {
+      this.features.setNearbySelected(true);
+      this.layersQueried = true;
+    }
   }
 
   checkConnectionType () {
@@ -110,10 +92,6 @@ export class MyApp implements OnInit {
     this.connectSubscription = this.network.onConnect().subscribe(() => {
       console.log('network connected!');
       this.checkConnectionType();
-      // We just got a connection but we need to wait briefly
-       // before we determine the connection type. Might need to wait.
-      // prior to doing any api requests as well.
-
       setTimeout(() => {
         if (this.network.type === 'wifi') {
           console.log('we got a wifi connection, woohoo!');
@@ -127,7 +105,6 @@ export class MyApp implements OnInit {
 
   }
   ngOnInit() {
-
     this.features.shops.subscribe(features => {
       this.shops = features;
       
@@ -137,7 +114,14 @@ export class MyApp implements OnInit {
     })
     this.features.parking.subscribe(features => {
       this.parking = features;
-    })        
+    });
+    this.features.arcgisLoaded.subscribe(loaded => {
+      this.arcgisLoaded = loaded;
+      this.splashScreen.hide();
+    });  
+    window.setTimeout(8000, () => {
+      this.splashScreen.hide();
+    });
   }
   
 }

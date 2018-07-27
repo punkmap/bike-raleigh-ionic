@@ -19,9 +19,8 @@
       </ion-segment>
     </ion-toolbar> 
   </ion-header>
-<ion-content >
-
-    <div [ngSwitch]="list">
+<ion-content padding>
+    <div [ngSwitch]="list" id="nearbyList">
         <ion-list *ngSwitchCase="'shops'">
             <button ion-item *ngFor="let item of shops" (click)="itemTapped($event, item)">
               

@@ -28,6 +28,12 @@ export class NearbyPage implements OnInit {
 
   ngOnInit() {
     this.features.shops.subscribe(features => {
+      features.forEach(feature => {
+        let label:string = feature.attributes.LABEL;
+        if (label.indexOf('(') > -1) {
+          feature.attributes.LABEL = label.substring(0, label.indexOf('('));
+        }
+      });
       this.shops = features;
       
     })
@@ -35,6 +41,12 @@ export class NearbyPage implements OnInit {
       this.greenways = features;
     })
     this.features.parking.subscribe(features => {
+      features.forEach(feature => {
+        let address:string = feature.attributes.ADDRESS;
+        if (address.indexOf(', R') > -1) {
+          feature.attributes.ADDRESS = address.substring(0, address.indexOf(', R')).replace('Approx. ', '');
+        }
+      });
       this.parking = features;
     })      
   }
