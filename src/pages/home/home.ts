@@ -165,13 +165,7 @@ export class HomePage implements OnInit {
         this.loadBaseMapGallery(); 
         let track = new Track({view: this.view});
         this.view.ui.add(track, 'top-left');
-        track.on("track", () => {
-          let location = track.graphic.geometry;
-          this.view.goTo({
-            center: location,
-            scale: 2500
-          });
-        });
+
         let compass = new Compass({view: this.view});
         this.view.ui.add(compass, 'top-left');
         this.layerList = new LayerList({
