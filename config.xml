@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.raleigh.bikeraleigh588064" version="2.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>BikeRaleigh</name>
-    <description>The BikeRaleigh Program encourages biking in Raleigh through on-road facility design, cycling safety and education promotion, and encouragement events. Our primary goal is to promote bicycle use as a viable, attractive, non-polluting form of transportation and assure safe and convenient access to all areas of the City.
+    <name>Bike-N-Hike Cary</name>
+    <description>The Bike-N-Hike Cary app encourages biking and hiking in the Town of Cary.
 </description>
-    <author email="gis@raleighnc.gov" href="http://raleighnc.gov">
-      City of Raleigh GIS
+    <author email="tyler.waring@townofcary.org" href="http://www.townofcary.org">
+      Town of Cary GIS
   </author>
     <content src="index.html" />
     <access origin="*" />

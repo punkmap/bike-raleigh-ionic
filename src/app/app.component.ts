@@ -24,8 +24,8 @@ export class MyApp implements OnInit {
   layersRoot = 'LayersPage'
   nearbyRoot = 'NearbyPage'
   basemapsRoot = 'BasemapsPage'
-  shops:any[] = [];
-  parking:any[] = [];
+  facilities:any[] = [];
+  parks:any[] = [];
   greenways:any[] = [];
   rootPage: any = HomePage;
   arcgisLoaded:boolean = false;
@@ -105,15 +105,14 @@ export class MyApp implements OnInit {
 
   }
   ngOnInit() {
-    this.features.shops.subscribe(features => {
-      this.shops = features;
-      
+    this.features.listFacilities.subscribe(features => {
+      this.facilities = features;
     })
-    this.features.trailheads.subscribe(features => {
+    this.features.greenways.subscribe(features => {
       this.greenways = features;
     })
-    this.features.parking.subscribe(features => {
-      this.parking = features;
+    this.features.parks.subscribe(features => {
+      this.parks = features;
     });
     this.features.arcgisLoaded.subscribe(loaded => {
       this.arcgisLoaded = loaded;
