@@ -124,8 +124,9 @@ export class FeaturesProvider {
         this.selectedParks.next(selectedParks);
       } else {
         //console.log("absoluttely NO parksNeedToBePushed");
-        this.listParks.next(this.parks["_value"]);
-        this.setParkFilter(this.parks["_value"]);
+        this.listParks.next([]);
+        this.setParkFilter([]);
+        this.selectedParks.next([]);
       }
     } else {
       this.listParks.next(this.parks["_value"])
