@@ -8,16 +8,6 @@ import { Platform } from 'ionic-angular';
 //import { JsonPipe } from '@angular/common';
 import { Events } from 'ionic-angular';
 
-const layerConfig = {
-"Facilities - Facility Site Assets":{
-
-},
-"Parks - Park and Recreation Areas":{},
-"CaryTrails - Existing Greenway Trails":{},
-}
-
-
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -42,8 +32,6 @@ export class HomePage implements OnInit {
   constructor(public navCtrl: NavController, public features:FeaturesProvider, public platform:Platform, public events:Events) {
   }
   async getGeo() {
-    const self = this;
-  
     await this.platform.ready();
     loadCss('https://js.arcgis.com/4.8/esri/themes/dark/main.css');   
     const [WebMap, MapView]:any = await loadModules(['esri/WebMap', 'esri/views/MapView'])
@@ -249,12 +237,12 @@ export class HomePage implements OnInit {
         }
       });          
   }
-  getExistingSymbol(layerTitle){
-    const self = this
-    for(var i = 0; i<this.view.map.layers.length; i ++){
+  // getExistingSymbol(layerTitle){
+  //   const self = this
+  //   for(var i = 0; i<this.view.map.layers.length; i ++){
 
-    }
-  }
+  //   }
+  // }
   setZoomTo(){
     this.features.zoomto.subscribe(obj =>
       {
@@ -263,7 +251,6 @@ export class HomePage implements OnInit {
        loadModules(["esri/Graphic"])
       .then(([Graphic]) => {
         let g;
-        let existingSymbol; 
         if(obj.feature.geometry.hasOwnProperty("paths")){
           //existingSymbol = this.getExistingSymbol(obj.layertitle);
           var lineSymbol = {

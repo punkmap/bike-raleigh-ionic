@@ -103,13 +103,13 @@ export class FeaturesProvider {
       let parkPushed = false;
       this.parks["_value"].forEach(function(park){
         let pass = true;
-        let i = 0;
         facTypes.forEach(function(fieldname){
-          //console.log("i: " + i);
           let strField = self.getParkAmenityFieldName(fieldname, parkAmenities);
-          if (park.attributes[strField]==='No'){
+          console.log('park.attributes[strField]: ' + park.attributes[strField]);
+          if (!park.attributes[strField]||park.attributes[strField]==='No'){
             pass = false;
           }
+          else { console.log ('you can pass this puppy')}
         })
         //console.log("pass: " + pass);
         if(pass===true){
